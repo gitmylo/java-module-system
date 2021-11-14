@@ -5,31 +5,18 @@ import com.mylo.modlib.modbase.ModMain;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author GitMylo
+ * An easy loader to load your modules.
  */
-public class SimpleLoader<T extends ModMain<Mod>> implements Loader<Mod> {
-    /**
-     * A list of the loaded modules.
-     */
-    public ArrayList<Mod> loadedMods;
-
-    /**
-     * Instantiate a new SimpleLoader.
-     */
-    public SimpleLoader(){
-        loadedMods = new ArrayList<>();
-    }
-
+public class SimpleLoader<T extends Mod> {
     /**
      * The directory the mods are located in.
      */
@@ -44,6 +31,18 @@ public class SimpleLoader<T extends ModMain<Mod>> implements Loader<Mod> {
     public String modMainLink = ".mod";
 
     /**
+     * A list of the loaded modules.
+     */
+    private List<T> loadedMods;
+
+    /**
+     * Instantiate a new SimpleLoader.
+     */
+    public SimpleLoader(){
+        loadedMods = new ArrayList<>();
+    }
+
+    /**
      * Load all the modules found in modRoot
      * into the loadedMods list.
      */
@@ -51,6 +50,14 @@ public class SimpleLoader<T extends ModMain<Mod>> implements Loader<Mod> {
         for (String m: getModules()){
             loadedMods.addAll(getModule(m));
         }
+    }
+
+    /**
+     * Get a list of the loaded modules.
+     * @return a list of the loaded modules.
+     */
+    public List<T> getLoadedMods(){
+        return loadedMods;
     }
 
     /**
@@ -99,7 +106,7 @@ public class SimpleLoader<T extends ModMain<Mod>> implements Loader<Mod> {
      * @param dir The directory to get the module from.
      * @return a list of modules.
      */
-    public List<Mod> getModule(String dir){
+    public List<T> getModule(String dir){
         try {
             File modDir = new File(dir);
             String modConfPath = dir+"/"+modMainLink;
@@ -129,10 +136,10 @@ public class SimpleLoader<T extends ModMain<Mod>> implements Loader<Mod> {
         return null;
     }
 
-    private List<Mod> classGetMods(Class<ModMain> modMainClass){
+    private List<T> classGetMods(Class<ModMain> modMainClass){
         try {
             ModMain instance = modMainClass.getConstructor().newInstance();//instantiates the module
-            return (List<Mod>) modMainClass.getMethod("getModules").invoke(instance);//gets the modules list
+            return (List<T>) modMainClass.getMethod("getModules").invoke(instance);//gets the modules list
         }
         catch (Exception e){
             e.printStackTrace();

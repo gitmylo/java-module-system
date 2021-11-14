@@ -129,4 +129,4 @@ public class TestMod extends CustomMod {
 ```
 
 ### License <a name="license-link" />
-Licensed under MIT License.
+Licensed under [MIT License](LICENSE).

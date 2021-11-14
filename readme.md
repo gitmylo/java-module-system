@@ -110,5 +110,23 @@ public class Main extends ModMain {
 }
 ```
 #### Custom mod Module classes <a name="mod-mods-link">
+```java
+package com.mylo.exampleMod;
+
+import com.mylo.usedlibrary.CustomMod;
+
+public class TestMod extends CustomMod {
+    @Override
+    public String getName() {//getName is from the base mod class
+        return "TestMod";
+    }
+
+    @Override
+    public String anotherString() {//anotherString is from CustomMod
+        return "Another String Lmao";
+    }
+}
+```
+
 ### License <a name="license-link" />
 Licensed under MIT License.

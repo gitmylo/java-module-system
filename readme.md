@@ -1,89 +1,50 @@
 # Java Module Library
 
-[test link](#testpart)
+## Readme contents
+- ### [Information](#info)
+- ### [Usage](#usage)
+  - #### [Api](#api)
+  - #### [Main app](#mainapp)
+  - #### [Modules (Plugins)](#plugins)
 
-lorem ipsum bla bla bla
 
-bla bla bla
+## Information <a name="info" />
+Java module library is a lightweight library that allows for a 
+modular extensive design 
 
-bla bla bla
+## Usage <a name="usage" />
+### Api <a name="api" />
+#### intro
+The api is a class used by both the main application and modules (plugins).
+This class should have direct or indirect access to anything you want to be
+accessible in the external modules.
 
-bla bla bla
+#### loader redirect
+An example on how to 
+```java
+package com.mylo.usedlibrary;
 
-bla bla bla
+import com.mylo.modlib.loader.SimpleLoader;
+import java.util.List;
 
-bla bla bla
+public class LoadMods {//a really basic mod loader
+    public static List<CustomMod> loadMods(){
+        return new SimpleLoader<CustomMod>().loadModules().getLoadedMods();
+    }
+}
+```
+#### mod base class
+```java
+package com.mylo.usedlibrary;
 
-bla bla bla
+import com.mylo.modlib.modbase.Mod;
 
-bla bla bla
+public abstract class CustomMod implements Mod {//
+    public abstract String anotherString();
+}
 
-bla bla bla
+```
 
-bla bla bla
+### Main app <a name="mainapp" />
 
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-bla bla bla
-
-<a name="testpart" />
+### Modules (Plugins) <a name="plugins" />

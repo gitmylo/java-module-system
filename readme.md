@@ -1,35 +1,35 @@
 # Java Module Library
 
 ## Readme contents
-- ### [Information](#info)
-- ### [Usage](#usage)
-  - #### [Api](#api)
-    - [Intro](#api-intro)
-    - [Loader redirect](#loader-redirect)
-    - [Mod base class](#mod-base-class)
-    - [Custom loader](#custom-loader)
-  - #### [Main app](#mainapp)
-    - [Intro](#main-intro)
-    - [Mounting the modules](#mounting-the-modules)
-  - #### [Modules (Plugins)](#plugins)
-    - [Intro](#mod-intro)
-    - [Custom mod ModMain](#mod-main)
-    - [Custom mod module classes](#mod-mods)
-- ### [License](#license)
+- ### [Information](#info-link)
+- ### [Usage](#usage-link)
+  - #### [Api](#api-link)
+    - [Intro](#api-intro-link)
+    - [Loader redirect](#loader-redirect-link)
+    - [Mod base class](#mod-base-class-link)
+    - [Custom loader](#custom-loader-link)
+  - #### [Main app](#mainapp-link)
+    - [Intro](#main-intro-link)
+    - [Mounting the modules](#mounting-the-modules-link)
+  - #### [Modules (Plugins)](#plugins-link)
+    - [Intro](#mod-intro-link)
+    - [Custom mod ModMain](#mod-main-link)
+    - [Custom mod module classes](#mod-mods-link)
+- ### [License](#license-link)
 
 
-## Information <a name="info" />
+## Information <a name="info-link" />
 Java module library is a lightweight library that allows for a 
 modular extensive design 
 
-## Usage <a name="usage" />
-### Api <a name="api" />
-#### Intro <a name="api-intro">
+## Usage <a name="usage-link" />
+### Api <a name="api-link" />
+#### Intro <a name="api-intro-link">
 The api is a class used by both the main application and modules (plugins).
 This class should have direct or indirect access to anything you want to be
 accessible in the external modules.
 
-#### Loader redirect <a name="loader-redirect" />
+#### Loader redirect <a name="loader-redirect-link" />
 An example on how to create a bridge to the loader:
 ```java
 package com.mylo.usedlibrary;
@@ -46,7 +46,7 @@ public class LoadMods {
     }
 }
 ```
-#### Mod base class <a name="mod-base-class" />
+#### Mod base class <a name="mod-base-class-link" />
 An example mod base class:
 ```java
 package com.mylo.usedlibrary;
@@ -62,13 +62,13 @@ public abstract class CustomMod implements Mod {
     public abstract String anotherString();
 }
 ```
-#### Custom loader <a name="custom-loader" />
+#### Custom loader <a name="custom-loader-link" />
 To make a custom loader you start by extending "com.mylo.modlib.loader.SimpleLoader". You could simply change modRoot (the mod folder to check) and modMainLink (the mod's .mod file by default).
 
-### Main app <a name="mainapp" />
-#### Intro <a name="main-intro">
+### Main app <a name="mainapp-link" />
+#### Intro <a name="main-intro-link">
 Begin by importing the api you made at the previous steps.
-#### Mounting the modules <a name="mounting-the-modules" />
+#### Mounting the modules <a name="mounting-the-modules-link" />
 Main class loading all modules and calling functions example:
 ```java
 package com.mylo.ModuleExample;
@@ -89,10 +89,10 @@ public class Main {
 }
 ```
 
-### Modules (Plugins) <a name="plugins" />
-#### Intro <a name="mod-intro">
+### Modules (Plugins) <a name="plugins-link" />
+#### Intro <a name="mod-intro-link">
 All modules require the api you made at the previous steps
-#### Custom mod ModMain <a name="mod-main">
+#### Custom mod ModMain <a name="mod-main-link">
 ```java
 package com.mylo.exampleMod;
 
@@ -109,6 +109,6 @@ public class Main extends ModMain {
     }
 }
 ```
-#### Custom mod Module classes <a name="mod-mods">
-### License <a name="license" />
+#### Custom mod Module classes <a name="mod-mods-link">
+### License <a name="license-link" />
 Licensed under MIT License.

@@ -45,11 +45,13 @@ public class SimpleLoader<T extends Mod> {
     /**
      * Load all the modules found in modRoot
      * into the loadedMods list.
+     * @return the instance after loading modules.
      */
-    public void loadModules(){
+    public SimpleLoader loadModules(){
         for (String m: getModules()){
             loadedMods.addAll(getModule(m));
         }
+        return this;
     }
 
     /**
@@ -64,16 +66,24 @@ public class SimpleLoader<T extends Mod> {
      * Gets the modules from the modRoot.
      * @return the list of modules found.
      */
-    public List<String> getModules(){
+    protected List<String> getModules(){
         File modDir = new File(modRoot);
+        System.out.println("Searching for modules in: " + modDir.getAbsolutePath());
         if (modDir.exists() && modDir.isDirectory()){
             List<String> out = new ArrayList<>();
             for (String p: modDir.list()){
                 if (isValidMod(p)){
                     out.add(p);
                 }
+                else {
+                    File modPath = new File(p);
+                    System.err.println("invalid mod: " + modPath.getAbsolutePath());
+                }
             }
             return out;
+        }
+        else {
+            System.err.println("Directory doesn't exist.");
         }
         return new ArrayList<>();
     }
@@ -84,7 +94,7 @@ public class SimpleLoader<T extends Mod> {
      * @param dir The directory of the mod to check.
      * @return if the mod exists and has a config file.
      */
-    public boolean isValidMod(String dir){
+    protected boolean isValidMod(String dir){
         try {
             File modDir = new File(dir);
             String modConfPath = dir+"/"+modMainLink;
@@ -92,6 +102,9 @@ public class SimpleLoader<T extends Mod> {
                 File modConf = new File(modConfPath);
                 if (modConf.exists() && modConf.isFile()){
                     return readFirstLine(modConfPath) != null;
+                }
+                else {
+                    System.err.println("no config for mod, looking at: " + modConf.getAbsolutePath());
                 }
             }
         }
@@ -106,7 +119,7 @@ public class SimpleLoader<T extends Mod> {
      * @param dir The directory to get the module from.
      * @return a list of modules.
      */
-    public List<T> getModule(String dir){
+    protected List<T> getModule(String dir){
         try {
             File modDir = new File(dir);
             String modConfPath = dir+"/"+modMainLink;

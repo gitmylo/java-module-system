@@ -72,8 +72,8 @@ public class SimpleLoader<T extends Mod> {
         if (modDir.exists() && modDir.isDirectory()){
             List<String> out = new ArrayList<>();
             for (String p: modDir.list()){
-                if (isValidMod(p)){
-                    out.add(p);
+                if (isValidMod(modRoot+p)){
+                    out.add(modRoot+p);
                 }
                 else {
                     File modPath = new File(p);

@@ -127,6 +127,8 @@ public class TestMod extends CustomMod {
     }
 }
 ```
+  
+To then install the module, grab the compiled .class files, put them in a folder with a .mod file in the root with the path to the mod loader class. As would be in a meta-inf/manifest.mf file, but this isn't a jar, so you simply specify it in a .mod file. if you want a version that loads mods from a jar or a zip, you're free to make a fork.
 
 ### License <a name="license-link" />
 Licensed under [MIT License](LICENSE).
